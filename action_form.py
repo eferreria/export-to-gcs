@@ -1,3 +1,7 @@
+# Copyright 2023 Google. 
+# This software is provided as-is, without warranty or representation for any use or purpose. 
+# Your use of it is subject to your agreement with Google. 
+
 # NOTE that this is going to be in your main.py
 # https://github.com/looker/actions/blob/master/docs/action_api.md#action-form-endpoint
 import os
