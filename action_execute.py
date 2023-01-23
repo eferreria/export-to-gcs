@@ -2,7 +2,7 @@
 # This software is provided as-is, without warranty or representation for any use or purpose. 
 # Your use of it is subject to your agreement with Google. 
 
-# copy to main.py
+# NOTE that this is going to be in your main.py
 # please supply your GCS Project ID and PubSub Topic ID
 from google.cloud import storage
 from google.cloud import exceptions
