@@ -129,7 +129,8 @@ yagmail==0.15.277
 ```
 Note that some of these may not be required, and this is not the bare minimum to run the code
 
-
+### main.py
+Copy the code for each cloud function into their respective main.py
 
 ## action_form
 Entry Point: action_form
