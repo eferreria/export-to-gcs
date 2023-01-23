@@ -31,7 +31,7 @@ Be sure to name your entry_point the same as your controller functions. The entr
 The 3 CFs are:
 * action_list -  This serves as your "Custom Looker Action Hub" and should list all the actions you are creating
 * action_form - For each action, this CF serves as the input form that can be used by the execute function
-* action_execute - For each action, this CF serves as the program that executes the action that takes thes input from action_form
+* action_execute - For each action, this CF serves as the program that executes the action that takes the input from action_form
 
 NOTE: If you wish to have a second custom action, you can list this in action_list as a second option, but it will need it's own action_form and action_execute
 
@@ -235,6 +235,8 @@ In particular, we are simply using/refactoring the code in the documentation to 
         blob.upload_from_filename(path)
     
 ```
+
+I did not add logic to download the encrypted file (and supplying the encryption key). A sample python code is provided in [GCP's Documentation](https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys#download-decrypt)
 
 ## Alternative Options
 If you decide to use your own server, you will need to create url endpoints to call each of these functions. You will also need to ensure your allowlist settings allow traffic from Looker to pass through the firewall.
