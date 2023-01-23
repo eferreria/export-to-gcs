@@ -1,4 +1,8 @@
-# add this to main.py of cloud function
+# Copyright 2023 Google. 
+# This software is provided as-is, without warranty or representation for any use or purpose. 
+# Your use of it is subject to your agreement with Google. 
+
+# NOTE that this is going to be in your main.py
 # replace the URLs to the trigger URLs of action_form and action_execute
 import os
 import hmac
