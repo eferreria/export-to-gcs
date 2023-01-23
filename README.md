@@ -198,7 +198,43 @@ def action_list(request):
 ## Publishing Message to PubSub Topic
 Before continuing, I would advise to make sure the above works and that the minimum functionality is that the CFs will export the file into a GCS bucket after aggregating all the CSV files into a single tabbed XLS file. You will need to also make sure you configure the bucket so it can be reached by the SA and whichever application/user needs to access the exported files. 
 
+An additional request for this workflow is to add the ability to publish messages to a pubsub topic. We will be using the [PubSub Documentation](https://cloud.google.com/pubsub/docs/publisher) in this example. I have added `google-cloud-pubsub` as part of the requirements file. I have created a separate function to publish messages, this will take an input to allow more flexibility
+```
+def post_to_topic(message):
+    publisher = pubsub_v1.PublisherClient()
+    topic_path = publisher.topic_path(project_id, topic_id)
+    print(topic_path)
+    data_str = f"{message}"
 
+    # Data must be a bytestring
+    data = data_str.encode("utf-8")
+    
+    future = publisher.publish(topic_path, data)
+    print(future.result())
+    return 1
+```
+
+## Adding File Encryption
+For file encryption, this POC is using Customer Supplied Encryption Key. We will be using GCP's Secret Manager to store the key and add a second environment variable in the `action_execute` cloud function called `file_encryption_key`. More information regarding key encryption in GCS can be found in this [documentation](https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys#client-libraries_1)
+
+In particular, we are simply using/refactoring the code in the documentation to add the file encryption in action_execute
+```
+  # Take the customer provided encyption key from secrets manager, mapped to filer_encryption_key variable for the cloud function
+    base64_encryption_key = os.environ.get('file_encryption_key')
+
+    # decode the key
+    encryption_key = base64.b64decode(base64_encryption_key)
+    
+    try:
+        bucket = storage_client.get_bucket(bucket_name)
+        full_path = folder_name + '/' + str(datetime.datetime.now()) + '_' +  file_name + '.xlsx'
+        print(full_path)
+
+        # encode the file using the key
+        blob = bucket.blob(full_path, encryption_key=encryption_key)
+        blob.upload_from_filename(path)
+    
+```
 
 ## Alternative Options
 If you decide to use your own server, you will need to create url endpoints to call each of these functions. You will also need to ensure your allowlist settings allow traffic from Looker to pass through the firewall.
