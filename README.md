@@ -254,15 +254,16 @@ To test the payload sent from Looker to our Cloud Function, we replace the url p
 You can also use this payload in the Cloud Function testing functionality to manually pass in the payload rather than have to resent it through Looker. This is extremely useful if the query runtime for the desired schedules take a long time or is resource intensive.
 
 ## More Resources:
+https://cloud.google.com/looker/docs/action-hub
+
 https://github.com/davidtamaki/looker-custom-action-content-manager
-
-https://docs.looker.com/sharing-and-publishing/action-hub
-
-https://training.looker.com/the-action-hub
 
 https://github.com/looker-open-source/actions
 
 https://github.com/looker-open-source/actions/blob/master/docs/action_api.md
 
+https://cloud.google.com/storage/docs/encryption/using-customer-supplied-keys
+
+https://cloud.google.com/pubsub/docs/publisher
 
 
