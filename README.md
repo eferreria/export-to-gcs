@@ -133,7 +133,7 @@ Note that some of these may not be required, and this is not the bare minimum to
 Copy the code for each cloud function into their respective main.py
 
 ## action_form
-Entry Point: action_form
+Entry Point: action_form <br>
 In action_form we defined a function called, you guessed it, action_form. It accepts the json payload as an argument. We define a response here which is the form fields users see in the Looker UI, when they select the action.
 ```
 def action_form(request):
@@ -153,7 +153,7 @@ def action_form(request):
 The only thing the form needs to do is return the response as JSON is the authentication function returns a 200.
 
 ## action_execute
-Entry Point: buckets
+Entry Point: buckets <br>
 The second cloud function we create is called action_execute. This is the meat and potatoes of Looker Actions. It is where we do the heavy lifting. Here we define a function called execute and set that as our entry point. We call the other functions from execute. Execute accepts response as an arg. From here, you can define your own functions, using whichever Python Libraries you would like. We can transform the data from Looker and send it to another destination.
 
 I develop these locally and use pip freeze to show all the package versions needed for the requirements.txt file.
@@ -163,7 +163,7 @@ For further reading on the requirements.txt file, please see this link.
 In our example, we created a function called email using the yagamail library to send our end user the payload. We are again using the Google Secret Manager to store the application password to the email. I would suggest using a production grade SMTP service such as SendGrid or Sailthru.
 
 ## action_list
-Entry Point: action_list
+Entry Point: action_list <br>
 Our last cloud function is action_list. Here we define a function called, action_complete and reuse the authentication function from action_form. The entry point is again set to action_complete.
 
 The main purpose of this function is to return a response when called by the Looker action API. We define the action name, we add the URI of our icon, we define the supported action types, supported formats, and specify the form_url and url. The form_url points at the trigger for action_form which we saved in a txt file in the earlier steps and the url points to the trigger for the action_execute function which we just defined.
