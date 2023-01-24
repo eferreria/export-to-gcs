@@ -1,5 +1,9 @@
 # Looker Action: Export to GCS
 ## Introduction
+```
+Copyright 2023 Google. This software is provided as-is, without warranty or representation for any use or purpose. Your use of it is subject to your agreement with Google.  
+```
+
 Looker can send or share data using [Looker Actions](https://cloud.google.com/looker/docs/action-hub). This repository aims to showcase a workflow to serve as a proof of concept. The workflow will do the following:
 
 1. Produce a Looker Exported file (CSV) from a Looker Object (Dashboard or Look)
