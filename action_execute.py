@@ -34,9 +34,6 @@ def upload_bucket(request_json, path):
     folder_name = str(request_json["scheduled_plan"]['scheduled_plan_id']) + "_" + str(request_json["scheduled_plan"]['title'])
     file_name = str(request_json["scheduled_plan"]['title'])
     bucket_name = str(request_json["form_params"]["bucket"])
-    # project_id = str(request_json["form_params"]["project"])
-    # topic_id = str(request_json["form_params"]["topic"])
-    # storage_client = storage.Client(project=os.environ.get(project_id))
 
     print(bucket_name)
     print(topic_id)
